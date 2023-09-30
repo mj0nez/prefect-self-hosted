@@ -1,0 +1,31 @@
+version: "3.9"
+
+networks:
+  default:
+    name: prefect-network
+
+  ## Prefect Agent
+  agent:
+    image: prefecthq/prefect:2.13.1-python3.11
+    # container_name: orion
+    restart: unless-stopped
+    entrypoint: ["prefect", "agent", "start", "-q", "dev"]
+    environment:
+      - PREFECT_API_URL=http://server:4200/api
+    depends_on:
+      - server
+    profiles: ["agent"]
+
+  worker:
+#    image: prefecthq/prefect:2.13.1-python3.11
+    image: prefect-docker
+    # container_name: orion
+    restart: unless-stopped
+    entrypoint: ["prefect", "worker", "start", "--pool", "docker","--type","docker"]
+    environment:
+      - PREFECT_API_URL=http://server:4200/api
+    depends_on:
+      - server
+    profiles: ["worker"]
+
+

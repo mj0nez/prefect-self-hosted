@@ -1,0 +1,14 @@
+version: "3.9"
+
+networks:
+  default:
+    name: prefect-network
+
+services:  
+  flow:
+    image: my-docker-flow:latest
+    environment:
+      - PREFECT_API_URL=http://server:4200/api
+    depends_on:
+      - server
+    profiles: ["flow"]

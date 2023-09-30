@@ -1,0 +1,4 @@
+FROM prefecthq/prefect:2.13.1-python3.11 as img
+
+# install prefect-docker collection
+RUN pip install --no-cache-dir prefect-docker
