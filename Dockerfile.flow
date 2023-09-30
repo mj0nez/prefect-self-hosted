@@ -1,4 +1,7 @@
-FROM prefecthq/prefect:2.13.1-python3.11
+ARG prefectVersion
+ARG pythonVersion
+
+FROM prefecthq/prefect:${prefectVersion}-python${pythonVersion}
 
 # Add our flow code to the image
 COPY flows /opt/prefect/flows

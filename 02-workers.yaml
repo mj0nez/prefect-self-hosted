@@ -27,5 +27,3 @@ networks:
     depends_on:
       - server
     profiles: ["worker"]
-
-

@@ -1,0 +1,7 @@
+ARG prefectVersion
+ARG pythonVersion
+
+FROM prefecthq/prefect:${prefectVersion}-python${pythonVersion}
+
+# install prefect-docker collection
+RUN pip install --no-cache-dir prefect-docker
